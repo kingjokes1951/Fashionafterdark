@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion After Dark | Model Application</title>
+    
+   
+</head>
+<body class="bg-white">
+
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-brand-border transition-all duration-300" id="mainHeader">
+        <div class="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-xl tracking-wide font-bold serif-heading">
+                FASHION AFTER DARK
+            </a>
+          
+              <!-- Desktop Navigation -->
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide h-full">
+
+                <a href="INDEX.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Home</a>
+
+                                <a href="models.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Models</a>
+
+
+                <a href="designers.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Designers</a>
+
+
+                <a href="contact.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Contact</a>
+
+
+                <a href="events.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Events</a>
+
+
+                     <div class="group relative h-full flex items-center">
+
+                    <a href="talnet.html" class="text-black border-b border-black pb-1 flex items-center gap-1 cursor-pointer">
+
+
+                        Talent <i class="fas fa-chevron-down text-[10px] ml-1 transition-transform duration-300 group-hover:rotate-180"></i>
+
+                    </a>
+
+                    <div class="absolute top-[calc(100%-1.25rem)] left-0 w-48 bg-white border border-brand-border shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="models.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors">All Models</a>
+
+                        <a href="#models" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors border-t border-brand-border">New Faces</a>
+
+
+                        <a href="model_application.html" class="btn bg-white text-black hover:bg-gray-200 border border-white transition-colors">Apply as a Model</a>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+            <!-- Actions -->
+
+            <div class="hidden md:flex items-center space-x-4">
+
+                <a href="#" class="text-sm font-medium hover-underline-animation">Login</a>
+
+                <a href="#" class="btn btn-primary py-2 px-4 text-xs">Donate</a>
+
+
+            </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden">
+            <button class="absolute top-6 right-6 text-2xl text-black" aria-label="Close menu" onclick="toggleMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+            <nav class="flex flex-col space-y-6 text-2xl serif-heading overflow-y-auto">
+                <a href="index.html" class="hover:text-gray-600">Home</a>
+                <div class="flex flex-col space-y-4">
+                    <button class="text-left text-black flex items-center justify-between w-full" onclick="document.getElementById('mobileTalentMenu').classList.toggle('hidden')">
+                        Talent <i class="fas fa-chevron-down text-lg"></i>
+                    </button>
+                    <div id="mobileTalentMenu" class="hidden flex flex-col space-y-4 pl-4 text-xl text-gray-500">
+                        <a href="models.html" class="hover:text-black">All Models</a>
+                        <a href="apply.html" class="text-black font-medium border-b border-black inline-block self-start pb-1">Apply Now</a>
+                    </div>
+                </div>
+                <a href="designers.html" class="hover:text-gray-600">Designers</a>
+                <a href="contact.html" class="hover:text-gray-600">Contact</a>
+            </nav>
+            <div class="mt-12 flex flex-col space-y-4">
+                <button id="mobileDarkModeToggle" class="btn btn-outline text-center flex items-center justify-center gap-2">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </button>
+                <a href="#" class="btn btn-primary text-center">Donate</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-28 pb-20 lg:pb-32">
+        <section class="max-w-screen-xl mx-auto px-6 py-12 reveal">
+            <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
+                <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">Scouting & Representation</span>
+                <h1 class="text-4xl md:text-6xl leading-tight mb-6 serif-heading">
+                    Become a Face.
+                </h1>
+                <p class="text-lg text-gray-600 font-light leading-relaxed">
+                    We are currently scouting for our New Faces board as well as reviewing established talent for representation. Please complete the digital application below for consideration.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+                <!-- Left Column: Instructions -->
+                <div class="lg:col-span-4 order-2 lg:order-1">
+                    <div class="sticky top-32">
+                        <h3 class="text-xl serif-heading mb-6 border-b border-brand-border pb-4">Submission Guidelines</h3>
+                        
+                        <div class="space-y-6 text-sm font-light text-gray-600">
+                            <div>
+                                <h4 class="font-medium text-black mb-2 uppercase tracking-widest text-xs">Photographs</h4>
+                                <p>We require raw, unedited polaroids. Do not submit professional photos, selfies with filters, or heavily retouched images. Natural lighting is best.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-black mb-2 uppercase tracking-widest text-xs">Attire for Photos</h4>
+                                <p>Wear form-fitting, solid color clothing. Black or white is preferred. Skinny jeans and a plain tank top work perfectly.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-medium text-black mb-2 uppercase tracking-widest text-xs">Hair & Makeup</h4>
+                                <p>Hair should be pulled away from the face. Absolutely no makeup. We need to see your natural bone structure and skin.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-medium text-black mb-2 uppercase tracking-widest text-xs">Response Time</h4>
+                                <p>Due to the high volume of submissions, our scouting team will only reach out if there is interest in setting up an interview. Typical response time is 2-3 weeks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Form -->
+                <div class="lg:col-span-8 order-1 lg:order-2">
+                    <form action="#" method="POST" class="space-y-12" onsubmit="event.preventDefault(); alert('Application submitted successfully! (This is a demonstration)');">
+                        
+                        <!-- Personal Details -->
+                        <div>
+                            <h2 class="text-2xl serif-heading mb-6">Personal Details</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="sr-only">First Name</label>
+                                    <input type="text" placeholder="First Name *" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="sr-only">Last Name</label>
+                                    <input type="text" placeholder="Last Name *" class="form-input" required>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="sr-only">Email Address</label>
+                                    <input type="email" placeholder="Email Address *" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="sr-only">Phone Number</label>
+                                    <input type="tel" placeholder="Phone Number *" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="sr-only">Date of Birth</label>
+                                    <input type="text" placeholder="Date of Birth (MM/DD/YYYY) *" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="sr-only">City, State</label>
+                                    <input type="text" placeholder="Current City & State *" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="sr-only">Instagram Handle</label>
+                                    <input type="text" placeholder="Instagram Handle (@...)" class="form-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Measurements -->
+                        <div>
+                            <h2 class="text-2xl serif-heading mb-6">Measurements</h2>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">Height</label>
+                                    <select class="form-input text-gray-700 bg-transparent" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="5-7">5'7"</option>
+                                        <option value="5-8">5'8"</option>
+                                        <option value="5-9">5'9"</option>
+                                        <option value="5-10">5'10"</option>
+                                        <option value="5-11">5'11"</option>
+                                        <option value="6-0">6'0"</option>
+                                        <option value="6-1">6'1"</option>
+                                        <option value="6-2">6'2"+</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">Bust / Chest</label>
+                                    <input type="text" placeholder="Inches" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">Waist</label>
+                                    <input type="text" placeholder="Inches" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">Hips</label>
+                                    <input type="text" placeholder="Inches" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">Shoe Size (US)</label>
+                                    <input type="text" placeholder="Size" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">Dress Size</label>
+                                    <input type="text" placeholder="Size" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">Hair Color</label>
+                                    <input type="text" placeholder="Color" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 mb-1 block">Eye Color</label>
+                                    <input type="text" placeholder="Color" class="form-input" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Photo Uploads -->
+                        <div>
+                            <h2 class="text-2xl serif-heading mb-2">Digital Polaroids</h2>
+                            <p class="text-sm text-gray-500 mb-6 font-light">Max file size: 5MB per image. JPG or PNG only.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- Headshot -->
+                                <div class="file-upload-zone p-6 flex flex-col items-center justify-center text-center cursor-pointer h-48 relative">
+                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>
+                                    <i class="fas fa-camera text-2xl text-gray-400 mb-3"></i>
+                                    <span class="text-sm font-medium text-gray-700">Headshot</span>
+                                    <span class="text-xs text-gray-500 mt-1">Straight on, no smiling</span>
+                                </div>
+                                
+                                <!-- Profile -->
+                                <div class="file-upload-zone p-6 flex flex-col items-center justify-center text-center cursor-pointer h-48 relative">
+                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>
+                                    <i class="fas fa-user text-2xl text-gray-400 mb-3"></i>
+                                    <span class="text-sm font-medium text-gray-700">Profile</span>
+                                    <span class="text-xs text-gray-500 mt-1">Side profile</span>
+                                </div>
+
+                                <!-- Full Body -->
+                                <div class="file-upload-zone p-6 flex flex-col items-center justify-center text-center cursor-pointer h-48 relative">
+                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>
+                                    <i class="fas fa-child text-2xl text-gray-400 mb-3"></i>
+                                    <span class="text-sm font-medium text-gray-700">Full Body</span>
+                                    <span class="text-xs text-gray-500 mt-1">Head to toe</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Division Interest -->
+                        <div>
+                            <h2 class="text-2xl serif-heading mb-4">Area of Interest</h2>
+                            <div class="flex flex-wrap gap-4 text-sm">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
+                                    <span>Runway</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
+                                    <span>Editorial / Print</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
+                                    <span>Commercial</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-brand-border flex items-center justify-between flex-wrap gap-4">
+                            <p class="text-xs text-gray-500 max-w-md">By submitting this application, you agree to our terms of service and acknowledge that all provided information is accurate.</p>
+                            <button type="submit" class="btn btn-primary w-full md:w-auto">Submit Portfolio</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-black text-white pt-20 pb-8">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                <div class="md:col-span-5 lg:col-span-4">
+                    <h2 class="text-3xl serif-heading mb-6 leading-tight">Where Social Impact Meets Opportunity.</h2>
+                    <p class="text-gray-400 text-sm font-light mb-10 leading-relaxed">
+                        Social Impact Project Hollywood is a community driven activation platform connecting fashion, entertainment, education and professional development. Produced in connection with Higher Frequencies Health and Human Development Foundation and HAUS of CHAINZ.
+                    </p>
+                </div>
+                <div class="hidden md:block md:col-span-1 lg:col-span-2"></div>
+                <div class="md:col-span-3">
+                    <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-6 font-medium">Navigate</h3>
+                    <ul class="space-y-3 text-sm font-light text-gray-300">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="models.html" class="hover:text-white transition-colors">Models</a></li>
+                        <li><a href="designers.html" class="hover:text-white transition-colors">Designers</a></li>
+                    </ul>
+                </div>
+                <div class="md:col-span-3">
+                    <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-6 font-medium">Connect</h3>
+                    <ul class="space-y-3 text-sm font-light text-gray-300 mb-8">
+                        <li class="flex items-center space-x-2"><i class="fab fa-instagram"></i> <a href="#" class="hover:text-white transition-colors">Social Impact Project</a></li>
+                    </ul>
+                    <a href="contact.html" class="text-sm font-medium hover:text-gray-300 transition-colors border-b border-gray-600 pb-1">Contact The Project</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
+                <p>© 2026 Social Impact Project Hollywood</p>
+                <p class="mt-4 md:mt-0 tracking-widest uppercase">Breaking Barriers · Building Portfolios · Creating Access</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const body = document.body;
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                body.style.overflow = 'hidden'; 
+            } else {
+                menu.classList.add('translate-x-full');
+                body.style.overflow = '';
+            }
+        }
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
+        const htmlEl = document.documentElement;
+
+        function toggleTheme() {
+            htmlEl.classList.toggle('dark-mode-invert');
+            const isDark = htmlEl.classList.contains('dark-mode-invert');
+            
+            const desktopIcon = darkModeToggle.querySelector('i');
+            if (isDark) {
+                desktopIcon.classList.remove('fa-moon');
+                desktopIcon.classList.add('fa-sun');
+            } else {
+                desktopIcon.classList.remove('fa-sun');
+                desktopIcon.classList.add('fa-moon');
+            }
+
+            const mobileIcon = mobileDarkModeToggle.querySelector('i');
+            if (isDark) {
+                mobileIcon.classList.remove('fa-moon');
+                mobileIcon.classList.add('fa-sun');
+                mobileDarkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+            } else {
+                mobileIcon.classList.remove('fa-sun');
+                mobileIcon.classList.add('fa-moon');
+                mobileDarkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+            }
+        }
+
+        if(darkModeToggle) darkModeToggle.addEventListener('click', toggleTheme);
+        if(mobileDarkModeToggle) mobileDarkModeToggle.addEventListener('click', toggleTheme);
+    </script>
+     <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Configuration for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'brand-black': '#111111',
+                        'brand-gray': '#f5f5f5',
+                        'brand-light-gray': '#fafafa',
+                        'brand-dark-gray': '#333333',
+                        'brand-border': '#e5e5e5'
+                    },
+                    maxWidth: {
+                        'screen-xl': '1280px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-black, #111);
+            color: white;
+            border: 1px solid var(--brand-black, #111);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+            border: 1px solid var(--brand-border, #e5e5e5);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--brand-black, #111);
+        }
+
+        /* Form styling */
+        .form-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 0.75rem 0;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-bottom-color: #111;
+        }
+
+        .file-upload-zone {
+            border: 1px dashed #e5e5e5;
+            background-color: #fafafa;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload-zone:hover {
+            border-color: #111;
+            background-color: #f5f5f5;
+        }
+
+        /* Dark Mode Invert Styles */
+        html.dark-mode-invert {
+            filter: invert(1) hue-rotate(180deg);
+            background-color: #111;
+        }
+        
+        html.dark-mode-invert img,
+        html.dark-mode-invert video {
+            filter: invert(1) hue-rotate(180deg);
+        }
+    </style>
+</body>
+</html>

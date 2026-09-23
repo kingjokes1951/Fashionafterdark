@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion After Dark | Events & Activations</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for general text, Playfair Display for headings for an elegant feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Configuration for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'brand-black': '#111111',
+                        'brand-gray': '#f5f5f5',
+                        'brand-light-gray': '#fafafa',
+                        'brand-dark-gray': '#333333',
+                        'brand-border': '#e5e5e5'
+                    },
+                    maxWidth: {
+                        'screen-xl': '1280px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specific tweaks -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, .serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Subtle reveal animation on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom link underline effect */
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-black, #111);
+            color: white;
+            border: 1px solid var(--brand-black, #111);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+            border: 1px solid var(--brand-border, #e5e5e5);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--brand-black, #111);
+        }
+        
+        /* Calendar Specific Styles */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .calendar-day:hover:not(.empty) {
+            background-color: #f5f5f5;
+        }
+        
+        .calendar-day.has-event {
+            font-weight: 600;
+            color: white;
+            background-color: var(--brand-black);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        .calendar-day.has-event:hover {
+            transform: scale(1.1);
+        }
+
+        .calendar-day.empty {
+            cursor: default;
+        }
+
+        /* Dark Mode Invert Styles */
+        html.dark-mode-invert {
+            filter: invert(1) hue-rotate(180deg);
+            background-color: #111;
+        }
+        
+        /* Double-invert images, videos, and map containers so they look normal */
+        html.dark-mode-invert img,
+        html.dark-mode-invert video,
+        html.dark-mode-invert .map-container {
+            filter: invert(1) hue-rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Unified Header -->
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-brand-border transition-all duration-300" id="mainHeader">
+        <div class="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="INDEX.html" class="text-xl tracking-wide font-bold serif-heading">
+                FASHION AFTER DARK
+            </a>
+
+    <!-- Desktop Navigation -->
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide h-full">
+
+                <a href="INDEX.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Home</a>
+
+                                <a href="models.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Models</a>
+
+
+                <a href="designers.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Designers</a>
+
+
+                <a href="contact.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Contact</a>
+
+
+                <a href="events.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Events</a>
+
+
+                     <div class="group relative h-full flex items-center">
+
+                    <a href="talnet.html" class="text-black border-b border-black pb-1 flex items-center gap-1 cursor-pointer">
+
+
+                        Talent <i class="fas fa-chevron-down text-[10px] ml-1 transition-transform duration-300 group-hover:rotate-180"></i>
+
+                    </a>
+
+                    <div class="absolute top-[calc(100%-1.25rem)] left-0 w-48 bg-white border border-brand-border shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="models.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors">All Models</a>
+
+                        <a href="#models" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors border-t border-brand-border">New Faces</a>
+
+
+                        <a href="model_application.html" class="btn bg-white text-black hover:bg-gray-200 border border-white transition-colors">Apply as a Model</a>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+            <!-- Actions -->
+
+            <div class="hidden md:flex items-center space-x-4">
+
+
+
+            </div>
+            <!-- Actions -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button id="darkModeToggle" class="text-lg text-brand-dark-gray hover:text-black transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#" class="text-sm font-medium hover-underline-animation">Login</a>
+                <a href="#" class="btn btn-primary py-2 px-4 text-xs">Donate</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-2xl text-black p-3 -mr-3" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Panel -->
+        <div id="mobileMenu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden">
+            <button class="absolute top-5 right-5 text-2xl text-black p-4" aria-label="Close menu" onclick="toggleMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <nav class="flex flex-col space-y-6 text-2xl serif-heading overflow-y-auto no-scrollbar">
+                <a href="INDEX.html" class="hover:text-gray-600">Home</a>
+                
+                <div class="flex flex-col space-y-4">
+                    <button class="text-left text-black flex items-center justify-between w-full" onclick="document.getElementById('mobileTalentMenu').classList.toggle('hidden')">
+                        Talent <i class="fas fa-chevron-down text-lg"></i>
+                    </button>
+                    <div id="mobileTalentMenu" class="hidden flex flex-col space-y-4 pl-4 text-xl text-gray-500">
+                        <a href="models.html" class="hover:text-black">All Models</a>
+                        <a href="models.html#runway" class="hover:text-black">Runway Roster</a>
+                        <a href="models.html#editorial" class="hover:text-black">Editorial</a>
+                        <a href="models.html#new-faces" class="hover:text-black">New Faces</a>
+                        <a href="model_application.html" class="text-black font-medium border-b border-black inline-block self-start pb-1">Apply Now</a>
+                    </div>
+                </div>
+
+                <a href="designers.html" class="hover:text-gray-600">Designers</a>
+
+                <a href="contact.html" class="hover:text-gray-600">Contact</a>
+
+                <a href="events.html" class="text-black">Events</a>
+            </nav>
+            
+            <div class="mt-12 flex flex-col space-y-4">
+                <button id="mobileDarkModeToggle" class="btn btn-outline text-center flex items-center justify-center gap-2">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </button>
+                <a href="#" class="btn btn-outline text-center">Login</a>
+                <a href="#" class="btn btn-primary text-center">Donate</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-28">
+
+        <!-- Hero Section -->
+        <section class="max-w-screen-xl mx-auto px-6 py-12 lg:py-20 reveal">
+            <div class="max-w-4xl">
+                <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">Community & Culture</span>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 serif-heading">
+                    Activations <br>& Events.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mb-12 font-light leading-relaxed">
+                    Join us for upcoming runway showcases, networking mixers, open casting calls, and exclusive industry panels. 
+                </p>
+            </div>
+        </section>
+
+        <!-- Calendar & Events List Section -->
+        <section class="max-w-screen-xl mx-auto px-6 py-12 border-t border-brand-border reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+                
+                <!-- Left Column: Calendar UI (Sticky on Desktop) -->
+                <div class="lg:col-span-4 order-1">
+                    <div class="sticky top-32">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="text-2xl serif-heading">October 2026</h3>
+                            <div class="flex space-x-2">
+                                <button class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-gray transition-colors"><i class="fas fa-chevron-left text-xs"></i></button>
+                                <button class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-gray transition-colors"><i class="fas fa-chevron-right text-xs"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Visual Calendar Grid -->
+                        <div class="calendar-grid mb-8 text-sm">
+                            <!-- Days of Week -->
+                            <div class="text-gray-400 text-xs font-medium pb-2">S</div>
+                            <div class="text-gray-400 text-xs font-medium pb-2">M</div>
+                            <div class="text-gray-400 text-xs font-medium pb-2">T</div>
+                            <div class="text-gray-400 text-xs font-medium pb-2">W</div>
+                            <div class="text-gray-400 text-xs font-medium pb-2">T</div>
+                            <div class="text-gray-400 text-xs font-medium pb-2">F</div>
+                            <div class="text-gray-400 text-xs font-medium pb-2">S</div>
+
+                            <!-- Dates (Example layout for Oct 2026, starting Thurs) -->
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day text-gray-500">1</div>
+                            <div class="calendar-day has-event" title="New Faces Open Call">2</div>
+                            <div class="calendar-day text-gray-500">3</div>
+                            
+                            <div class="calendar-day text-gray-500">4</div>
+                            <div class="calendar-day text-gray-500">5</div>
+                            <div class="calendar-day text-gray-500">6</div>
+                            <div class="calendar-day text-gray-500">7</div>
+                            <div class="calendar-day text-gray-500">8</div>
+                            <div class="calendar-day text-gray-500">9</div>
+                            <div class="calendar-day text-gray-500">10</div>
+
+                            <div class="calendar-day text-gray-500">11</div>
+                            <div class="calendar-day text-gray-500">12</div>
+                            <div class="calendar-day text-gray-500">13</div>
+                            <div class="calendar-day text-gray-500">14</div>
+                            <div class="calendar-day has-event" title="Fall Collection Showcase">15</div>
+                            <div class="calendar-day text-gray-500">16</div>
+                            <div class="calendar-day text-gray-500">17</div>
+
+                            <div class="calendar-day text-gray-500">18</div>
+                            <div class="calendar-day text-gray-500">19</div>
+                            <div class="calendar-day text-gray-500">20</div>
+                            <div class="calendar-day text-gray-500">21</div>
+                            <div class="calendar-day text-gray-500">22</div>
+                            <div class="calendar-day text-gray-500">23</div>
+                            <div class="calendar-day has-event" title="Industry Networking Mixer">24</div>
+
+                            <div class="calendar-day text-gray-500">25</div>
+                            <div class="calendar-day text-gray-500">26</div>
+                            <div class="calendar-day text-gray-500">27</div>
+                            <div class="calendar-day text-gray-500">28</div>
+                            <div class="calendar-day text-gray-500">29</div>
+                            <div class="calendar-day text-gray-500">30</div>
+                            <div class="calendar-day text-gray-500">31</div>
+                        </div>
+
+                        <div class="p-6 bg-brand-light-gray border border-brand-border text-sm">
+                            <h4 class="font-medium mb-2">Want to host an event?</h4>
+                            <p class="text-gray-500 font-light mb-4 leading-relaxed">Our studio space is available for editorial shoots, fittings, and private fashion activations.</p>
+                            <a href="contact.html" class="text-black font-medium border-b border-black pb-1 hover:text-gray-600 transition-colors">Inquire about rentals</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Event List -->
+                <div class="lg:col-span-8 order-2 space-y-12">
+                    
+                    <!-- Event Item 1 -->
+                    <article class="group flex flex-col md:flex-row gap-6 md:gap-10 pb-12 border-b border-brand-border">
+                        <!-- Date Block -->
+                        <div class="flex-shrink-0 w-24 h-24 bg-brand-black text-white flex flex-col items-center justify-center rounded-sm">
+                            <span class="text-sm font-medium uppercase tracking-widest text-gray-400">Oct</span>
+                            <span class="text-4xl serif-heading">02</span>
+                        </div>
+                        <!-- Details -->
+                        <div class="flex-grow">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="px-3 py-1 bg-brand-light-gray border border-brand-border text-xs font-medium uppercase tracking-widest text-gray-600 rounded-full">Casting</span>
+                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 10:00 AM - 2:00 PM</span>
+                            </div>
+                            <h2 class="text-3xl serif-heading mb-4 group-hover:text-gray-600 transition-colors">New Faces Open Call</h2>
+                            <p class="text-gray-600 font-light leading-relaxed mb-6">
+                                We are scouting for unrepresented talent to join our New Faces division. No prior experience is necessary. Please bring your digital portfolio if available, and wear form-fitting, solid-color clothing (black or white preferred). Minimal to no makeup.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4">
+                                <a href="model_application.html" class="btn btn-primary">Register Details</a>
+                                <span class="text-sm font-medium text-gray-500"><i class="fas fa-map-marker-alt mr-2"></i> HAUS of CHAINZ Studio</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event Item 2 -->
+                    <article class="group flex flex-col md:flex-row gap-6 md:gap-10 pb-12 border-b border-brand-border">
+                        <div class="flex-shrink-0 w-24 h-24 bg-brand-black text-white flex flex-col items-center justify-center rounded-sm">
+                            <span class="text-sm font-medium uppercase tracking-widest text-gray-400">Oct</span>
+                            <span class="text-4xl serif-heading">15</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="px-3 py-1 bg-brand-light-gray border border-brand-border text-xs font-medium uppercase tracking-widest text-gray-600 rounded-full">Runway</span>
+                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 7:30 PM - 11:00 PM</span>
+                            </div>
+                            <h2 class="text-3xl serif-heading mb-4 group-hover:text-gray-600 transition-colors">Fall Collection Showcase</h2>
+                            <p class="text-gray-600 font-light leading-relaxed mb-6">
+                                Join us for our premier seasonal runway presentation featuring collections from our Headliner and Emerging Designers. The evening includes a VIP cocktail hour, the main runway production, and a post-show networking reception. 
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4">
+                                <button class="btn btn-primary">Buy Tickets</button>
+                                <span class="text-sm font-medium text-gray-500"><i class="fas fa-map-marker-alt mr-2"></i> Downtown LA Warehouse</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Event Item 3 -->
+                    <article class="group flex flex-col md:flex-row gap-6 md:gap-10 pb-12">
+                        <div class="flex-shrink-0 w-24 h-24 bg-brand-black text-white flex flex-col items-center justify-center rounded-sm">
+                            <span class="text-sm font-medium uppercase tracking-widest text-gray-400">Oct</span>
+                            <span class="text-4xl serif-heading">24</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="px-3 py-1 bg-brand-light-gray border border-brand-border text-xs font-medium uppercase tracking-widest text-gray-600 rounded-full">Networking</span>
+                                <span class="text-sm text-gray-500"><i class="far fa-clock mr-1"></i> 6:00 PM - 9:00 PM</span>
+                            </div>
+                            <h2 class="text-3xl serif-heading mb-4 group-hover:text-gray-600 transition-colors">Industry Networking Mixer</h2>
+                            <p class="text-gray-600 font-light leading-relaxed mb-6">
+                                A community-driven activation connecting fashion designers, photographers, models, and industry professionals. Open to all Fashion After Dark members and registered applicants. Hosted in partnership with Higher Frequencies Health.
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4">
+                                <button class="btn btn-outline">RSVP Required</button>
+                                <span class="text-sm font-medium text-gray-500"><i class="fas fa-map-marker-alt mr-2"></i> HAUS of CHAINZ Studio</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Pagination / Load More -->
+                    <div class="pt-8 text-center">
+                        <button class="btn btn-outline border-gray-300 text-gray-500 hover:text-black">Load November Events</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="bg-brand-light-gray py-20 lg:py-32 border-t border-brand-border">
+            <div class="max-w-screen-xl mx-auto px-6 reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    
+                    <!-- Text Details -->
+                    <div class="order-2 lg:order-1">
+                        <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">Headquarters & Venue</span>
+                        <h2 class="text-4xl md:text-5xl mb-8 leading-snug serif-heading">
+                            HAUS of CHAINZ
+                        </h2>
+                        <p class="text-gray-600 font-light leading-relaxed mb-10 text-lg">
+                            Our primary activation space and agency headquarters is located in the heart of Los Angeles. It serves as a creative hub for castings, fittings, editorial shoots, and intimate showcases.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-white border border-brand-border rounded-full flex items-center justify-center flex-shrink-0 mt-1 mr-4 shadow-sm">
+                                    <i class="fas fa-map-pin text-brand-black"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-black mb-1">Address</h4>
+                                    <p class="text-sm text-gray-500 font-light">1234 Fashion District Blvd, Suite 200<br>Los Angeles, CA 90015</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-white border border-brand-border rounded-full flex items-center justify-center flex-shrink-0 mt-1 mr-4 shadow-sm">
+                                    <i class="fas fa-car text-brand-black"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-black mb-1">Parking & Access</h4>
+                                    <p class="text-sm text-gray-500 font-light">Street parking is available on surrounding blocks. For large events, valet service is provided at the main entrance. Freight elevator access available via the rear alley.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 bg-white border border-brand-border rounded-full flex items-center justify-center flex-shrink-0 mt-1 mr-4 shadow-sm">
+                                    <i class="fas fa-envelope text-brand-black"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-black mb-1">General Inquiries</h4>
+                                    <p class="text-sm text-gray-500 font-light">events@fashionafterdark.com<br>+1 (310) 555-0199</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-gray-200">
+                            <a href="contact.html" class="btn btn-primary">Contact The Studio</a>
+                        </div>
+                    </div>
+
+                    <!-- Map / Image Container -->
+
+                    <div class="order-1 lg:order-2">
+
+                        <div class="relative w-full aspect-square bg-gray-200 overflow-hidden shadow-lg map-container group">
+                            <!-- Visual placeholder for a map -->
+                            <img src="image\data=3n0EOAj6iQt4aKsZzKwDe529FBBwc5IROcwsE68tBCB_HN06W0B5GQe49ErOkD7yiLS4a_jIXf5bzeJVJiQceCgeNvriCvA2wWs8UUQ_eDqbYo8qQSp2NpODGrpRkoMXZJ5T49ECGLi3KmfQEue23UmsMANNv1ajMwLvS9cVWD9YG-qt1UvMSpUxentAqC6mykHs4G0Ty82FPL.png" 
+                                 alt="Map location overview" 
+                                 class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-multiply group-hover:scale-105 transition-transform duration-700">
+                            
+                            <!-- Stylized Map Overlay Elements -->
+                            <div class="absolute inset-0 flex items-center justify-center flex-col pointer-events-none">
+                                <div class="w-16 h-16 bg-brand-black rounded-full flex items-center justify-center text-white text-2xl shadow-2xl mb-2 animate-bounce">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="bg-white px-4 py-2 shadow-lg rounded-sm">
+                                    <p class="text-xs font-bold tracking-widest uppercase text-black">Los Angeles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-brand-black text-white pt-20 pb-8">
+        <div class="max-w-screen-xl mx-auto px-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                <!-- Left Column -->
+                <div class="md:col-span-5 lg:col-span-4">
+                    <h2 class="text-3xl serif-heading mb-6 leading-tight">
+                        Where Social Impact Meets Opportunity.
+                    </h2>
+                    <p class="text-gray-400 text-sm font-light mb-10 leading-relaxed">
+                        Social Impact Project Hollywood is a community driven activation platform connecting fashion, entertainment, education and professional development. Produced in connection with Higher Frequencies Health and Human Development Foundation and HAUS of CHAINZ.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-4 font-medium">Newsletter — The HAUS Report</h3>
+                        <form class="flex border-b border-gray-700 pb-2" onsubmit="event.preventDefault();">
+                            <input type="email" placeholder="Email address" class="bg-transparent border-none outline-none w-full text-sm text-white placeholder-gray-500" required>
+                            <button type="submit" class="text-xs tracking-widest uppercase font-medium hover:text-gray-300 transition-colors">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden md:block md:col-span-1 lg:col-span-2"></div>
+
+                <!-- Navigation Columns -->
+                <div class="md:col-span-3">
+                    <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-6 font-medium">Navigate</h3>
+
+
+                    <ul class="space-y-3 text-sm font-light text-gray-300">
+
+                        <li><a href="INDEX.html" class="hover:text-white transition-colors">Home</a></li>
+
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+
+                        <li><a href="designer.html" class="hover:text-white transition-colors">Designers</a></li>
+
+                        <li><a href="models.html" class="hover:text-white transition-colors">Models</a></li>
+
+                        <li><a href="#" class="hover:text-white transition-colors">Creative</a></li>
+
+                        <li><a href="#" class="hover:text-white transition-colors">Campaign</a></li>
+
+                        <li><a href="#" class="hover:text-white transition-colors">Directory</a></li>
+
+
+
+
+                        <li><a href="#" class="hover:text-white transition-colors">Showcase</a></li>
+
+                        <li><a href="#" class="hover:text-white transition-colors">Membership</a></li>
+
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+
+                        <li><a href="event.html" class="hover:text-white transition-colors">Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3">
+                    <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-6 font-medium">Connect</h3>
+                    <ul class="space-y-3 text-sm font-light text-gray-300 mb-8">
+                        <li class="flex items-center space-x-2">
+                            <i class="fab fa-instagram"></i>
+                            <a href="#" class="hover:text-white transition-colors">Social Impact Project Hollywood</a>
+                        </li>
+                    </ul>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed mb-4">
+                        Inquiries from Media, Designers, Talent, Brands, partnerships, sponsorships and production are welcomed through the contact page.
+                    </p>
+                    <a href="contact.html" class="text-sm font-medium hover:text-gray-300 transition-colors border-b border-gray-600 pb-1">Contact The Project</a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
+                <p>© 2026 Social Impact Project Hollywood</p>
+                <p class="mt-4 md:mt-0 tracking-widest uppercase">Breaking Barriers · Building Portfolios · Creating Access</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const body = document.body;
+            
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                body.style.overflow = 'hidden'; 
+            } else {
+                menu.classList.add('translate-x-full');
+                body.style.overflow = '';
+            }
+        }
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; 
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
+
+        // Dark Mode Toggle Logic
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
+        const htmlEl = document.documentElement;
+
+        function toggleTheme() {
+            htmlEl.classList.toggle('dark-mode-invert');
+            const isDark = htmlEl.classList.contains('dark-mode-invert');
+            
+            // Update Desktop Icon
+            const desktopIcon = darkModeToggle.querySelector('i');
+            if (isDark) {
+                desktopIcon.classList.remove('fa-moon');
+                desktopIcon.classList.add('fa-sun');
+            } else {
+                desktopIcon.classList.remove('fa-sun');
+                desktopIcon.classList.add('fa-moon');
+            }
+
+            // Update Mobile Icon/Text
+            const mobileIcon = mobileDarkModeToggle.querySelector('i');
+            if (isDark) {
+                mobileIcon.classList.remove('fa-moon');
+                mobileIcon.classList.add('fa-sun');
+                mobileDarkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+            } else {
+                mobileIcon.classList.remove('fa-sun');
+                mobileIcon.classList.add('fa-moon');
+                mobileDarkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+            }
+        }
+
+        if(darkModeToggle) darkModeToggle.addEventListener('click', toggleTheme);
+        if(mobileDarkModeToggle) mobileDarkModeToggle.addEventListener('click', toggleTheme);
+
+    </script>
+</body>
+</html>

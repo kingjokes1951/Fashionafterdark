@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion After Dark | Models & Talent</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for general text, Playfair Display for headings for an elegant feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Configuration for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'brand-black': '#111111',
+                        'brand-gray': '#f5f5f5',
+                        'brand-light-gray': '#fafafa',
+                        'brand-dark-gray': '#333333',
+                        'brand-border': '#e5e5e5'
+                    },
+                    maxWidth: {
+                        'screen-xl': '1280px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specific tweaks -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, .serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Subtle reveal animation on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered transition delays for grid items */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Custom link underline effect */
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-black, #111);
+            color: white;
+            border: 1px solid var(--brand-black, #111);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+            border: 1px solid var(--brand-border, #e5e5e5);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--brand-black, #111);
+        }
+
+        /* Improved Button Accessibility & Visibility */
+        .btn {
+            min-height: 48px; /* Standard mobile touch target */
+            border-radius: 4px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            letter-spacing: 0.1em;
+        }
+        
+        /* Physical touch feedback */
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Solid Pill Filters for high visibility */
+        .filter-btn {
+            border-radius: 9999px;
+            background-color: var(--brand-light-gray, #fafafa);
+            border: 1px solid var(--brand-border, #e5e5e5);
+            padding: 0.5rem 1.5rem;
+            min-height: 44px;
+            color: #555;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--brand-black, #111);
+            color: white;
+            border-color: var(--brand-black, #111);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .number-indicator {
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-family: monospace;
+        }
+
+        /* Category Filter Styles */
+        .filter-btn.active {
+            color: black;
+            border-bottom-color: black;
+        }
+        
+        .model-card {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Better Mobile UX: Tap Feedback */
+        @media (hover: none) {
+            .btn:active, .filter-btn:active, button[onclick]:active {
+                transform: scale(0.95);
+                transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+
+        /* Better Mobile UX: Hide scrollbars for filter menu */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Dark Mode Invert Styles */
+        html.dark-mode-invert {
+            filter: invert(1) hue-rotate(180deg);
+            background-color: #111;
+        }
+        
+        /* Double-invert images and videos so they look normal */
+        html.dark-mode-invert img,
+        html.dark-mode-invert video {
+            filter: invert(1) hue-rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Unified Header -->
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-brand-border transition-all duration-300" id="mainHeader">
+        <div class="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="INDEX.html" class="text-xl tracking-wide font-bold serif-heading">FASHION AFTER DARK</a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide h-full">
+                <a href="INDEX.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Home</a>
+                <a href="models.html" class="text-black border-b border-black pb-1">Models</a>
+                <a href="designer.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Designers</a>
+                <a href="contact.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Contact</a>
+                <a href="event.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Events</a>
+                
+                <div class="group relative h-full flex items-center">
+                    <a href="models.html" class="text-brand-dark-gray hover:text-black hover-underline-animation flex items-center gap-1 cursor-pointer">
+                        Talent <i class="fas fa-chevron-down text-[10px] ml-1 transition-transform duration-300 group-hover:rotate-180"></i>
+                    </a>
+                    <div class="absolute top-[calc(100%-1.25rem)] left-0 w-48 bg-white border border-brand-border shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="models.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors">All Models</a>
+                        <a href="models.html#runway" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors">Runway Roster</a>
+                        <a href="models.html#editorial" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors">Editorial</a>
+                        <a href="models.html#new-faces" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors border-t border-brand-border">New Faces</a>
+                        <a href="model_application.html" class="block px-4 py-3 text-sm text-black font-medium hover:bg-brand-gray transition-colors border-t border-brand-border bg-gray-50">Apply Now</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-4">
+                <button id="darkModeToggle" class="text-lg text-brand-dark-gray hover:text-black transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#" class="text-sm font-medium hover-underline-animation">Login</a>
+                <a href="#" class="btn btn-primary py-2 px-4 text-xs min-h-[36px]">Donate</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-2xl text-black p-3 -mr-3" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Panel -->
+        <div id="mobileMenu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden">
+            <button class="absolute top-5 right-5 text-2xl text-black p-4" aria-label="Close menu" onclick="toggleMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <nav class="flex flex-col space-y-6 text-2xl serif-heading overflow-y-auto">
+                <a href="INDEX.html" class="hover:text-gray-600">Home</a>
+                <a href="models.html" class="text-black">Models</a>
+                <a href="designer.html" class="hover:text-gray-600">Designers</a>
+                <div class="flex flex-col space-y-4">
+                    <button class="text-left text-black flex items-center justify-between w-full" onclick="document.getElementById('mobileTalentMenu').classList.toggle('hidden')">
+                        Talent <i class="fas fa-chevron-down text-lg"></i>
+                    </button>
+                    <div id="mobileTalentMenu" class="hidden flex flex-col space-y-4 pl-4 text-xl text-gray-500">
+                        <a href="models.html" class="hover:text-black" onclick="toggleMobileMenu()">All Models</a>
+                        <a href="models.html#runway" class="hover:text-black" onclick="toggleMobileMenu()">Runway Roster</a>
+                        <a href="models.html#editorial" class="hover:text-black" onclick="toggleMobileMenu()">Editorial</a>
+                        <a href="models.html#new-faces" class="hover:text-black" onclick="toggleMobileMenu()">New Faces</a>
+                        <a href="model_application.html" class="text-black font-medium border-b border-black inline-block self-start pb-1">Apply Now</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="hover:text-gray-600">Contact</a>
+                <a href="event.html" class="hover:text-gray-600">Events</a>
+            </nav>
+            
+            <div class="mt-12 flex flex-col space-y-4">
+                <button id="mobileDarkModeToggle" class="btn btn-outline text-center flex items-center justify-center gap-2">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </button>
+                <a href="#" class="btn btn-outline text-center">Login</a>
+                <a href="#" class="btn btn-primary text-center">Donate</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-28">
+
+        <!-- Models Hero Section -->
+        <section class="max-w-screen-xl mx-auto px-6 py-12 lg:py-20 reveal">
+            <div class="text-center max-w-4xl mx-auto">
+                <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">The Agency Roster</span>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl leading-tight mb-8">
+                    Faces of<br>the Future.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                    Discover our curated roster of extraordinary individuals. We represent diverse talent across runway, editorial, and commercial fashion, bridging the gap between emerging potential and industry standard production.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+                    <a href="apply.html" class="btn btn-primary w-full sm:w-auto px-10 shadow-lg shadow-black/20">Become a Model</a>
+                    <a href="contact.html" class="btn btn-outline w-full sm:w-auto px-10 bg-white">Book Talent</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Filtering -->
+        <section class="max-w-screen-xl mx-auto px-6 mb-12 reveal">
+            <!-- Converted to a horizontally scrolling row on mobile, wraps on desktop -->
+            <div class="flex overflow-x-auto md:flex-wrap md:justify-center gap-3 pb-4 no-scrollbar snap-x">
+                <button class="filter-btn active flex-shrink-0 snap-start text-sm tracking-widest uppercase font-medium transition-all" data-filter="all">All Talent</button>
+                <button class="filter-btn flex-shrink-0 snap-start text-sm tracking-widest uppercase font-medium transition-all" data-filter="runway">Runway</button>
+                <button class="filter-btn flex-shrink-0 snap-start text-sm tracking-widest uppercase font-medium transition-all" data-filter="editorial">Editorial</button>
+                <button class="filter-btn flex-shrink-0 snap-start text-sm tracking-widest uppercase font-medium transition-all" data-filter="new-faces">New Faces</button>
+            </div>
+        </section>
+
+        <!-- Model Grid Gallery -->
+        <section class="max-w-screen-xl mx-auto px-6 pb-20 lg:pb-32 reveal">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12" id="modelGrid">
+                
+                <!-- Model 1: Runway/Editorial -->
+                <div class="group cursor-pointer model-card runway editorial flex flex-col" data-category="runway editorial">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elena Rostova" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <h3 class="text-lg font-medium serif-heading">Elena Rostova</h3>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">5'10"</span>
+                    </div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1 mb-5 px-1 flex-grow">Runway / Editorial</p>
+                    <button class="btn btn-outline w-full py-2 text-[10px] group-hover:bg-brand-black group-hover:text-white transition-all duration-300">View Profile</button>
+                </div>
+
+                <!-- Model 2: New Faces -->
+                <div class="group cursor-pointer model-card new-faces flex flex-col delay-1" data-category="new-faces">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Marcus Chen" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <h3 class="text-lg font-medium serif-heading">Marcus Chen</h3>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">6'1"</span>
+                    </div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1 mb-5 px-1 flex-grow">New Faces</p>
+                    <button class="btn btn-outline w-full py-2 text-[10px] group-hover:bg-brand-black group-hover:text-white transition-all duration-300">View Profile</button>
+                </div>
+
+                <!-- Model 3: Editorial -->
+                <div class="group cursor-pointer model-card editorial flex flex-col delay-2" data-category="editorial">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aisha Diallo" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <h3 class="text-lg font-medium serif-heading">Aisha Diallo</h3>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">5'11"</span>
+                    </div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1 mb-5 px-1 flex-grow">Editorial</p>
+                    <button class="btn btn-outline w-full py-2 text-[10px] group-hover:bg-brand-black group-hover:text-white transition-all duration-300">View Profile</button>
+                </div>
+
+                <!-- Model 4: Runway -->
+                <div class="group cursor-pointer model-card runway flex flex-col delay-3" data-category="runway">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jameson Wright" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <h3 class="text-lg font-medium serif-heading">Jameson Wright</h3>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">6'2"</span>
+                    </div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1 mb-5 px-1 flex-grow">Runway</p>
+                    <button class="btn btn-outline w-full py-2 text-[10px] group-hover:bg-brand-black group-hover:text-white transition-all duration-300">View Profile</button>
+                </div>
+
+                <!-- Model 5: Editorial -->
+                <div class="group cursor-pointer model-card editorial flex flex-col" data-category="editorial">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1512228807759-4fbd73a2135f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chloe Bennett" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <h3 class="text-lg font-medium serif-heading">Chloe Bennett</h3>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">5'9"</span>
+                    </div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1 mb-5 px-1 flex-grow">Editorial</p>
+                    <button class="btn btn-outline w-full py-2 text-[10px] group-hover:bg-brand-black group-hover:text-white transition-all duration-300">View Profile</button>
+                </div>
+
+                <!-- Model 6: Runway -->
+                <div class="group cursor-pointer model-card runway flex flex-col delay-1" data-category="runway">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="David Okafor" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <h3 class="text-lg font-medium serif-heading">David Okafor</h3>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">6'1"</span>
+                    </div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1 mb-5 px-1 flex-grow">Runway</p>
+                    <button class="btn btn-outline w-full py-2 text-[10px] group-hover:bg-brand-black group-hover:text-white transition-all duration-300">View Profile</button>
+                </div>
+                
+                <!-- Model 7: New Faces -->
+                <div class="group cursor-pointer model-card new-faces flex flex-col delay-2" data-category="new-faces">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mia Lin" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <h3 class="text-lg font-medium serif-heading">Mia Lin</h3>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">5'8"</span>
+                    </div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1 mb-5 px-1 flex-grow">New Faces</p>
+                    <button class="btn btn-outline w-full py-2 text-[10px] group-hover:bg-brand-black group-hover:text-white transition-all duration-300">View Profile</button>
+                </div>
+
+                <!-- Model 8: Runway/Editorial -->
+                <div class="group cursor-pointer model-card runway editorial flex flex-col delay-3" data-category="runway editorial">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sarah Jenkins" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <div class="flex justify-between items-baseline px-1">
+                        <h3 class="text-lg font-medium serif-heading">Sarah Jenkins</h3>
+                        <span class="text-[10px] text-gray-400 tracking-widest uppercase">5'10"</span>
+                    </div>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1 mb-5 px-1 flex-grow">Runway / Editorial</p>
+                    <button class="btn btn-outline w-full py-2 text-[10px] group-hover:bg-brand-black group-hover:text-white transition-all duration-300">View Profile</button>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="btn btn-outline" id="loadMoreBtn">Load More Talent</button>
+            </div>
+        </section>
+
+        <!-- Casting / Apply Section -->
+        <section class="bg-brand-black text-white py-20 lg:py-32 reveal">
+            <div class="max-w-screen-xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span class="text-xs tracking-widest uppercase text-gray-400 mb-6 block font-medium">Join The Agency</span>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl mb-8 leading-snug serif-heading">
+                            Submit your portfolio for consideration.
+                        </h2>
+                        <p class="text-gray-400 font-light leading-relaxed mb-8">
+                            We are constantly seeking new faces and experienced professionals to join our roster. We pride ourselves on representing a diverse board of talent that challenges industry standards.
+                        </p>
+                        <ul class="space-y-4 text-sm font-light text-gray-300 mb-10">
+                            <li class="flex items-start">
+                                <i class="fas fa-check mt-1 mr-3 text-white"></i>
+                                <span>Open calls held on the first Friday of every month.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check mt-1 mr-3 text-white"></i>
+                                <span>Digital submissions reviewed weekly by our scouting team.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check mt-1 mr-3 text-white"></i>
+                                <span>No prior experience required for the New Faces division.</span>
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="btn bg-white text-black hover:bg-gray-200 border border-white transition-colors">Apply as a Model</a>
+                    </div>
+                    <div class="relative w-full aspect-square bg-gray-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1583391733959-f18305f02ce1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Model casting polaroids" 
+                             class="absolute inset-0 w-full h-full object-cover object-center opacity-80"
+                             onerror="this.src='https://placehold.co/800x800/111111/ffffff?text=Casting+Polaroids'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Quick View Modal (Pop-out) -->
+        <div id="modelModal" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
+            <!-- Dark Backdrop -->
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModelModal()"></div>
+            
+            <!-- Modal Content Box -->
+            <div class="relative w-full max-w-4xl bg-white shadow-2xl mx-4 flex flex-col md:flex-row overflow-hidden transform scale-95 transition-transform duration-300" id="modelModalContent">
+                
+                <!-- Close Button -->
+                <button onclick="closeModelModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-brand-black hover:bg-gray-100 transition-colors border border-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <!-- Left Side: Image -->
+                <div class="w-full md:w-1/2 h-[50vh] md:h-[70vh] bg-brand-gray relative">
+                    <img id="modalImage" src="" alt="Model" class="absolute inset-0 w-full h-full object-cover object-center">
+                </div>
+
+                <!-- Right Side: Details -->
+                <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white">
+                    <div class="mb-2">
+                        <span id="modalCategory" class="text-[10px] tracking-widest uppercase text-gray-500 font-medium">Category</span>
+                    </div>
+                    <h2 id="modalName" class="text-4xl md:text-5xl serif-heading mb-6">Model Name</h2>
+                    
+                    <div class="space-y-4 mb-8 border-t border-b border-brand-border py-6">
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500 uppercase tracking-widest text-[10px] font-medium">Height</span>
+                            <span id="modalHeight" class="font-medium text-black">--</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-500 uppercase tracking-widest text-[10px] font-medium">Location</span>
+                            <span class="font-medium text-black">Los Angeles, CA</span>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-500 font-light mb-8 leading-relaxed">
+                        To view this model's complete portfolio, digitals, physical measurements, and booking availability, view their full digital comp card.
+                    </p>
+
+                    <div class="flex flex-col gap-3 mt-auto">
+                        <a href="comp-card.html" class="btn btn-primary w-full text-center">View Full Comp Card</a>
+                        <a href="contact.html" class="btn btn-outline w-full text-center">Inquire / Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-brand-black text-white pt-20 pb-8">
+        <div class="max-w-screen-xl mx-auto px-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                <!-- Left Column -->
+                <div class="md:col-span-5 lg:col-span-4">
+                    <h2 class="text-3xl serif-heading mb-6 leading-tight">
+                        Where Social Impact Meets Opportunity.
+                    </h2>
+                    <p class="text-gray-400 text-sm font-light mb-10 leading-relaxed">
+                        Social Impact Project Hollywood is a community driven activation platform connecting fashion, entertainment, education and professional development. Produced in connection with Higher Frequencies Health and Human Development Foundation and HAUS of CHAINZ.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-4 font-medium">Newsletter — The HAUS Report</h3>
+                        <form class="flex border-b border-gray-700 pb-2" onsubmit="event.preventDefault();">
+                            <input type="email" placeholder="Email address" class="bg-transparent border-none outline-none w-full text-sm text-white placeholder-gray-500" required>
+                            <button type="submit" class="text-xs tracking-widest uppercase font-medium hover:text-gray-300 transition-colors">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden md:block md:col-span-1 lg:col-span-2"></div>
+
+                <!-- Navigation Columns -->
+                <div class="md:col-span-3">
+                    <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-6 font-medium">Navigate</h3>
+                    <ul class="space-y-3 text-sm font-light text-gray-300">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="index.html#designers" class="hover:text-white transition-colors">Designers</a></li>
+                        <li><a href="models.html" class="hover:text-white transition-colors">Models</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Creative</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Campaign</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Directory</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Showcase</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Membership</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3">
+                    <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-6 font-medium">Connect</h3>
+                    <ul class="space-y-3 text-sm font-light text-gray-300 mb-8">
+                        <li class="flex items-center space-x-2">
+                            <i class="fab fa-instagram"></i>
+                            <a href="#" class="hover:text-white transition-colors">Social Impact Project Hollywood</a>
+                        </li>
+                    </ul>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed mb-4">
+                        Inquiries from Media, Designers, Talent, Brands, partnerships, sponsorships and production are welcomed through the contact page.
+                    </p>
+                    <a href="contact.html" class="text-sm font-medium hover:text-gray-300 transition-colors border-b border-gray-600 pb-1">Contact The Project</a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
+                <p>© 2026 Social Impact Project Hollywood</p>
+                <p class="mt-4 md:mt-0 tracking-widest uppercase">Breaking Barriers · Building Portfolios · Creating Access</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const body = document.body;
+            
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                body.style.overflow = 'hidden'; 
+            } else {
+                menu.classList.add('translate-x-full');
+                body.style.overflow = '';
+            }
+        }
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
+
+        // Category Filtering Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const modelCards = document.querySelectorAll('.model-card');
+
+            // Check URL hash on load for initial filter (e.g. models.html#runway)
+            const hash = window.location.hash.replace('#', '');
+            if(hash) {
+                const initialBtn = document.querySelector(`.filter-btn[data-filter="${hash}"]`);
+                if(initialBtn) applyFilter(initialBtn, hash);
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+                    applyFilter(btn, filter);
+                    // Update URL hash without jumping
+                    history.pushState(null, null, `#${filter}`);
+                });
+            });
+
+            function applyFilter(activeBtn, filter) {
+                // Update active button styling by purely toggling the active class
+                filterBtns.forEach(b => {
+                    b.classList.remove('active');
+                });
+                activeBtn.classList.add('active');
+
+                // Filter cards
+                modelCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        // small timeout to allow display:block to apply before changing opacity
+                        setTimeout(() => { card.style.opacity = '1'; }, 50);
+                    } else {
+                        if (card.getAttribute('data-category').includes(filter)) {
+                            card.style.display = 'block';
+                            setTimeout(() => { card.style.opacity = '1'; }, 50);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => { card.style.display = 'none'; }, 300); // Wait for transition
+                        }
+                    }
+                });
+            }
+
+            // --- Model Modal (Pop-out) Logic ---
+            const modal = document.getElementById('modelModal');
+            const modalContent = document.getElementById('modelModalContent');
+            const modalImage = document.getElementById('modalImage');
+            const modalName = document.getElementById('modalName');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalHeight = document.getElementById('modalHeight');
+
+            // Attach click event to all model cards dynamically
+            modelCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Extract data from the clicked HTML card elements
+                    const img = card.querySelector('img').src;
+                    const name = card.querySelector('h3').innerText;
+                    const height = card.querySelector('span').innerText;
+                    const category = card.querySelector('p').innerText;
+
+                    // Populate the Modal UI
+                    modalImage.src = img;
+                    modalName.innerText = name;
+                    modalHeight.innerText = height;
+                    modalCategory.innerText = category;
+                    
+                    // Show Modal & Prevent Body Scroll (locks background)
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Global close function
+            window.closeModelModal = function() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            // Close modal on Escape key press for accessibility
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('opacity-0')) {
+                    closeModelModal();
+                }
+            });
+            // ----------------------------------------
+
+            // Dark Mode Toggle Logic
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
+            const htmlEl = document.documentElement;
+
+            function toggleTheme() {
+                htmlEl.classList.toggle('dark-mode-invert');
+                const isDark = htmlEl.classList.contains('dark-mode-invert');
+                
+                // Update Desktop Icon
+                const desktopIcon = darkModeToggle.querySelector('i');
+                if (isDark) {
+                    desktopIcon.classList.remove('fa-moon');
+                    desktopIcon.classList.add('fa-sun');
+                } else {
+                    desktopIcon.classList.remove('fa-sun');
+                    desktopIcon.classList.add('fa-moon');
+                }
+
+                // Update Mobile Icon/Text
+                const mobileIcon = mobileDarkModeToggle.querySelector('i');
+                if (isDark) {
+                    mobileIcon.classList.remove('fa-moon');
+                    mobileIcon.classList.add('fa-sun');
+                    mobileDarkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                } else {
+                    mobileIcon.classList.remove('fa-sun');
+                    mobileIcon.classList.add('fa-moon');
+                    mobileDarkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                }
+            }
+
+            if(darkModeToggle) darkModeToggle.addEventListener('click', toggleTheme);
+            if(mobileDarkModeToggle) mobileDarkModeToggle.addEventListener('click', toggleTheme);
+        });
+    </script>
+</body>
+</html>

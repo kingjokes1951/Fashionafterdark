@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion After Dark | Designers</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for general text, Playfair Display for headings for an elegant feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Configuration for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+
+                        serif: ['Playfair Display', 'serif'],
+
+                    },
+                    colors: {
+                        'brand-black': '#111111',
+                        'brand-gray': '#f5f5f5',
+                        'brand-light-gray': '#fafafa',
+                        'brand-dark-gray': '#333333',
+                        'brand-border': '#e5e5e5'
+                    },
+                    maxWidth: {
+
+                        'screen-xl': '1280px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specific tweaks -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, .serif-heading {
+
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Subtle reveal animation on scroll */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered transition delays for grid items */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Custom link underline effect */
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-black, #111);
+            color: white;
+            border: 1px solid var(--brand-black, #111);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+            border: 1px solid var(--brand-border, #e5e5e5);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--brand-black, #111);
+        }
+        
+        .number-indicator {
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-brand-border transition-all duration-300" id="mainHeader">
+        <div class="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+
+            <a href="#" class="text-xl tracking-wide font-bold serif-heading">
+
+                FASHION AFTER DARK
+
+            </a>
+
+            <!-- Desktop Navigation -->
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide h-full">
+
+                <a href="INDEX.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Home</a>
+
+                                <a href="models.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Models</a>
+
+
+                <a href="designers.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Designers</a>
+
+
+                <a href="contact.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Contact</a>
+
+
+                <a href="events.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Events</a>
+
+
+                     <div class="group relative h-full flex items-center">
+
+                    <a href="talnet.html" class="text-black border-b border-black pb-1 flex items-center gap-1 cursor-pointer">
+
+
+                        Talent <i class="fas fa-chevron-down text-[10px] ml-1 transition-transform duration-300 group-hover:rotate-180"></i>
+
+                    </a>
+
+                    <div class="absolute top-[calc(100%-1.25rem)] left-0 w-48 bg-white border border-brand-border shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <a href="models.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors">All Models</a>
+
+                        <a href="#models" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors border-t border-brand-border">New Faces</a>
+
+
+                        <a href="model_application.html" class="btn bg-white text-black hover:bg-gray-200 border border-white transition-colors">Apply as a Model</a>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+            <!-- Actions -->
+
+            <div class="hidden md:flex items-center space-x-4">
+
+                <a href="#" class="text-sm font-medium hover-underline-animation">Login</a>
+
+                <a href="#" class="btn btn-primary py-2 px-4 text-xs">Donate</a>
+
+
+            </div>
+
+            <!-- Mobile Menu Button -->
+
+            <button class="md:hidden text-2xl text-black" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+
+                <i class="fas fa-bars"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Mobile Navigation Panel -->
+
+        <div id="mobileMenu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden">
+          
+          
+          
+            <button class="absolute top-6 right-6 text-2xl text-black" aria-label="Close menu" onclick="toggleMobileMenu()">
+
+                <i class="fas fa-times"></i>
+
+            </button>
+            
+            <nav class="flex flex-col space-y-6 text-2xl serif-heading overflow-y-auto">
+
+
+                <a href="INDEX.html" class="hover:text-gray-600">Home</a>
+
+                
+                <div class="flex flex-col space-y-4">
+
+                    <button class="text-left text-black flex items-center justify-between w-full" onclick="document.getElementById('mobileTalentMenu').classList.toggle('hidden')">
+                        Talent <i class="fas fa-chevron-down text-lg"></i>
+
+                    </button>
+
+                    <div id="mobileTalentMenu" class="hidden flex flex-col space-y-4 pl-4 text-xl text-gray-500">
+                        <a href="#models.html" class="hover:text-black" onclick="toggleMobileMenu()">All Models</a>
+                        <a href="#models" class="hover:text-black" onclick="toggleMobileMenu()">Runway Roster</a>
+                        <a href="#models" class="hover:text-black" onclick="toggleMobileMenu()">Editorial</a>
+                        <a href="#models" class="hover:text-black" onclick="toggleMobileMenu()">New Faces</a>
+                    </div>
+                </div>
+
+                <a href="designer.html" class="hover:text-gray-600">Designers</a>
+
+                <a href="#" class="hover:text-gray-600">Contact</a>
+
+                <a href="#" class="hover:text-gray-600">Events</a>
+
+            </nav>
+            
+            <div class="mt-12 flex flex-col space-y-4">
+
+               <div>
+
+               </div> 
+                <div>
+
+                </div>
+                                <a href="#" class="btn btn-outline text-center">Login</a>
+
+                                                <a href="#" class="btn btn-outline text-center">Login</a>
+
+
+                <a href="#" class="btn btn-outline text-center">Login</a>
+
+                <a href="#" class="btn btn-primary text-center">Donate</a>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-28">
+
+        <section class="max-w-screen-xl mx-auto px-6 py-20 lg:py-32 reveal">
+
+            <div class="max-w-4xl">
+                <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">For commuity</span>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl leading-tight mb-8">
+                    Your collection.<br>Fashion After Dark.
+                </h1>
+
+
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mb-12 font-light leading-relaxed">
+                    
+                    Fashion After Dark provides designers with access to organized fashion productions and a community of industry professionals. A community-driven activation platform connecting fashion, entertainment, education and professional development.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+
+                    <a href="model_application.html" class="btn btn-primary"> models registration</a> <br>
+
+                    <a href="#" class="btn btn-outline">Models Portal</a>
+
+                    <a href="#" class="btn btn-primary">Designer Opportunities</a> <br>
+
+                     <a href="#" class="btn btn-outline">Designer Portal</a>
+                   
+                    
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-screen-xl mx-auto px-6 py-16 lg:py-24 reveal border-t border-brand-border">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">The Production Advantage</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl mb-8 leading-snug">
+                        Present your work inside a produced environment.
+                    </h2>
+                    <div class="space-y-6 text-gray-600 font-light leading-relaxed">
+                        <p>
+                            Producing a show independently means sourcing models, coordinating beauty teams, building a run of show, securing media and managing the room. Our productions consolidate those elements so designers can focus on the collection and the presentation.
+                        </p>
+                        <p>
+                            Produced in connection with Higher Frequencies Health and Human Development Foundation and HAUS of CHAINZ, we bridge the gap between emerging talent and industry standard production.
+                        </p>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="relative w-full aspect-[4/5] bg-brand-gray overflow-hidden">
+                        <!-- Fallback placeholder image matching the vibe of the reference -->
+
+
+
+
+
+
+<img src="image\IMG_8096.jpg" alt="A descriptive sentence about the image">
+
+
+
+
+
+                             alt="Designer fitting a dress on a mannequin" 
+                             class="absolute inset-0 w-full h-full object-cover object-center"
+                             onerror="this.src='C:\Users\lilco\Desktop\kali\image\IMG_8096.jpg'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-brand-light-gray py-20 lg:py-32">
+            <div class="max-w-screen-xl mx-auto px-6 reveal">
+                <div class="mb-16 max-w-3xl">
+                    <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">Essential Production Resources</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl mb-6">
+                        What a production may include.
+                    </h2>
+
+                    <p class="text-gray-600 font-light text-lg">
+
+                        Designer participation and exact deliverables depend on the individual production or package.
+
+
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">01</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Model Casting</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Casting access to an extensive community of adult and youth/teen models.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">02</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Runway Production</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Show run down, staging, run of show and production coordination.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">03</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Designer Coordination</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Assistance around fittings, lineup, looks and timing.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">04</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Event Ambassadors</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Trained support roles assisting guests, backstage flow and designer needs.</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">05</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Photography</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Runway and event coverage circulated by the production media team.</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">06</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Videography</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Video native content suitable for brand and media use.</p>
+                    </div>
+
+                    <!-- Feature 7 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">07</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Hair & Makeup Teams</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Beauty teams working to the direction of the production or collection.</p>
+                    </div>
+
+                    <!-- Feature 8 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">08</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Styling Support</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Wardrobe and styling assistants for presentation cohesiveness.</p>
+                    </div>
+
+                    <!-- Feature 9 -->
+                    <div class="bg-white p-8 border border-brand-border bg-brand-gray">
+                        <span class="number-indicator">09</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Red Carpet Opportunities</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Artisanal dress adornments available in select collections.</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="mt-8 text-xs text-gray-400 italic">
+                    * Features depend on exact scope of agreement based on location, facility guidelines and budget limitations. List is not exhaustive and is variable.
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-screen-xl mx-auto px-6 py-20 lg:py-32 reveal">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">Designer Showcase Options</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl mb-6">
+                    Choose the opportunity that<br>best fits your collection.
+                </h2>
+
+
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- Package 1 -->
+                <div class="border border-brand-border p-10 flex flex-col">
+                    <div class="flex justify-between items-baseline mb-6">
+                        <h3 class="text-2xl serif-heading">Standard Showcase</h3>
+                        <span class="text-xl font-medium">$500</span>
+                    </div>
+                    <p class="text-gray-600 font-light mb-8 text-sm leading-relaxed flex-grow">
+                        Designed for emerging and established designers who want to introduce a focused collection on the HAUS of CHAINZ production platform.
+                    </p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <p class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-500">INVESTMENT</span> <span class="font-medium">$500</span></p>
+                        <p class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-500">MAXIMUM COLLECTION</span> <span class="font-medium">6 runway looks</span></p>
+                    </div>
+                    <a href="#" class="btn btn-primary w-full">Select $500 Showcase</a>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="border border-brand-border p-10 flex flex-col">
+                    <div class="flex justify-between items-baseline mb-6">
+                        <h3 class="text-2xl serif-heading">Featured Designer</h3>
+                        <span class="text-xl font-medium">$1,000</span>
+                    </div>
+                    <p class="text-gray-600 font-light mb-8 text-sm leading-relaxed flex-grow">
+                        An expanded showcase for designers who want greater runway presence and the opportunity to present a more complete collection.
+                    </p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <p class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-500">INVESTMENT</span> <span class="font-medium">$1,000</span></p>
+                        <p class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-500">MAXIMUM COLLECTION</span> <span class="font-medium">10 runway looks</span></p>
+                    </div>
+                    <a href="#" class="btn btn-primary w-full">Select $1,000 Showcase</a>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="border border-brand-border p-10 flex flex-col">
+                    <div class="flex justify-between items-baseline mb-6">
+                        <h3 class="text-2xl serif-heading">Headliner Designer</h3>
+                        <span class="text-xl font-medium">$2,500</span>
+                    </div>
+                    <p class="text-gray-600 font-light mb-8 text-sm leading-relaxed flex-grow">
+                        Our premier designer showcase position for a deep presentation of their collection.
+                    </p>
+                    <div class="space-y-3 mb-10 text-sm">
+                        <p class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-500">INVESTMENT</span> <span class="font-medium">$2,500</span></p>
+                        <p class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-500">MAXIMUM COLLECTION</span> <span class="font-medium">20 runway looks</span></p>
+                        <p class="flex justify-between border-b border-brand-border pb-2"><span class="text-gray-500">DESIGNATION</span> <span class="font-medium">Designated Headliner Designer</span></p>
+                    </div>
+                    <a href="#" class="btn btn-outline w-full">Apply for Headliner</a>
+                </div>
+
+                <!-- Package 4 -->
+                <div class="border border-brand-border p-10 flex flex-col bg-brand-light-gray">
+                    <div class="flex justify-between items-baseline mb-6">
+                        <h3 class="text-2xl serif-heading">Sponsored Designer Consideration</h3>
+                    </div>
+                    <p class="text-gray-600 font-light mb-6 text-sm leading-relaxed">
+                        Sponsored Designer status is NOT a package that can be automatically purchased. This designation is reserved for select, elite, prestigious, established, nationally or internationally recognized designers and fashion brands whose professional reputation, collection quality, industry presence, brand positioning, body of work, or influence aligns with the caliber of the production.
+                    </p>
+                    <div class="mb-10 flex-grow">
+                        <h4 class="text-xs tracking-widest uppercase text-gray-500 mb-4 font-medium">Sponsored Designations May Be Awarded Based On:</h4>
+                        <ul class="list-disc pl-4 text-xs text-gray-600 font-light space-y-2">
+                            <li>Established professional brand or label</li>
+                            <li>Strong professional portfolio and body of work</li>
+                            <li>High quality, runway-ready collection</li>
+                            <li>Recognized industry presence or reputation</li>
+                            <li>National or international brand presence</li>
+                            <li>Significant press, editorial, celebrity, entertainment, retail, or fashion industry recognition</li>
+                            <li>Alignment with production core values and aesthetic requirements</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-primary w-full">Apply for Sponsored Designer Consideration</a>
+                </div>
+            </div>
+            
+             <div class="mt-8 max-w-5xl mx-auto text-xs text-gray-400 italic">
+                Accepting a showcase package is subjection to production approval. Automatically generated guarantees are strictly placement timelines designed for expected outcomes. Exact participation subject to limitation on total production capacity and technical approvals. and written approval for associated branding by the technology.
+            </div>
+        </section>
+
+        <section class="bg-brand-light-gray py-20 lg:py-32 border-t border-b border-brand-border">
+            <div class="max-w-screen-xl mx-auto px-6 reveal">
+                <div class="mb-16">
+                    <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">Who We Work With</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl mb-6">
+                        Every stage of a design career.
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <!-- Stage 1 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">01</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Emerging Designers</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">A first professional runway engagement with structure and guidance.</p>
+                    </div>
+                    <!-- Stage 2 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">02</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Independent Designers</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Production support that lets you focus on the collection.</p>
+                    </div>
+                    <!-- Stage 3 -->
+                    <div class="bg-white p-8 border border-brand-border">
+                        <span class="number-indicator">03</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Established Designers</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">A platform aligned with community impact and cultural relevance.</p>
+                    </div>
+                    <!-- Stage 4 -->
+                    <div class="bg-white p-8 border border-brand-border bg-brand-gray">
+                        <span class="number-indicator">04</span>
+                        <h3 class="text-xl mb-3 font-medium serif-heading">Couture</h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">Presentation formats suited for detail, craft and unique venues.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="contact.html" class="btn btn-primary">Designer Inquiry</a>
+                    <a href="#" class="btn btn-outline bg-white">Partnership Options</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="models" class="max-w-screen-xl mx-auto px-6 py-20 lg:py-32 reveal border-t border-brand-border mt-10">
+            <div class="text-center mb-16 max-w-3xl mx-auto">
+                <span class="text-xs tracking-widest uppercase text-gray-500 mb-6 block font-medium">Our Talent</span>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+                    Faces of the Future.
+                </h2>
+                <p class="text-lg text-gray-600 font-light leading-relaxed">
+                    Discover our curated roster of extraordinary individuals. We represent diverse talent across runway, editorial, and commercial fashion.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-16">
+
+
+                <!-- Model 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elena Rostova" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <h3 class="text-lg font-medium serif-heading text-center">Elena Rostova</h3>
+                    <p class="text-xs text-gray-500 text-center uppercase tracking-widest mt-1">Runway / Editorial</p>
+                </div>
+
+                <!-- Model 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 delay-1">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Marcus Chen" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+
+                    <h3 class="text-lg font-medium serif-heading text-center">Marcus Chen</h3>
+                    <p class="text-xs text-gray-500 text-center uppercase tracking-widest mt-1">New Faces</p>
+                </div>
+
+                <!-- Model 3 -->
+
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 delay-2">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aisha Diallo" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <h3 class="text-lg font-medium serif-heading text-center">Aisha Diallo</h3>
+                    <p class="text-xs text-gray-500 text-center uppercase tracking-widest mt-1">Editorial</p>
+                </div>
+
+                <!-- Model 4 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-[3/4] bg-brand-gray mb-4 delay-3">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jameson Wright" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/600x800/f5f5f5/333333?text=Model'">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                    </div>
+                    <h3 class="text-lg font-medium serif-heading text-center">Jameson Wright</h3>
+                    <p class="text-xs text-gray-500 text-center uppercase tracking-widest mt-1">Runway</p>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#" class="btn btn-outline">View Full Roster</a>
+            </div>
+        </section>
+
+        <section class="bg-brand-black text-white py-20 lg:py-32 reveal">
+            <div class="max-w-screen-xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span class="text-xs tracking-widest uppercase text-gray-400 mb-6 block font-medium">Join The Agency</span>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl mb-8 leading-snug serif-heading">
+                            Submit your portfolio for consideration.
+                        </h2>
+                        <p class="text-gray-400 font-light leading-relaxed mb-8">
+                            We are constantly seeking new faces and experienced professionals to join our roster. We pride ourselves on representing a diverse board of talent that challenges industry standards.
+                        </p>
+                        <ul class="space-y-4 text-sm font-light text-gray-300 mb-10">
+                            <li class="flex items-start">
+                                <i class="fas fa-check mt-1 mr-3 text-white"></i>
+                                <span>Open calls held on the first Friday of every month.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check mt-1 mr-3 text-white"></i>
+                                <span>Digital submissions reviewed weekly by our scouting team.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check mt-1 mr-3 text-white"></i>
+                                <span>No prior experience required for the New Faces division.</span>
+                            </li>
+                        </ul>
+                        <a href="model_application.html" class="btn bg-white text-black hover:bg-gray-200 border border-white transition-colors">Apply as a Model</a>
+                    </div>
+                    <div class="relative w-full aspect-square bg-gray-900 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1583391733959-f18305f02ce1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Model casting polaroids" 
+                             class="absolute inset-0 w-full h-full object-cover object-center opacity-80"
+                             onerror="this.src='https://placehold.co/800x800/111111/ffffff?text=Casting+Polaroids'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-brand-black text-white pt-20 pb-8">
+        <div class="max-w-screen-xl mx-auto px-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                <!-- Left Column -->
+                <div class="md:col-span-5 lg:col-span-4">
+                    <h2 class="text-3xl serif-heading mb-6 leading-tight">
+                        Where Social Impact Meets Opportunity.
+                    </h2>
+                    <p class="text-gray-400 text-sm font-light mb-10 leading-relaxed">
+                        Social Impact Project Hollywood is a community driven activation platform connecting fashion, entertainment, education and professional development. Produced in connection with Higher Frequencies Health and Human Development Foundation and HAUS of CHAINZ.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-4 font-medium">Newsletter — The HAUS Report</h3>
+                        <form class="flex border-b border-gray-700 pb-2">
+                            <input type="email" placeholder="Email address" class="bg-transparent border-none outline-none w-full text-sm text-white placeholder-gray-500" required>
+                            <button type="submit" class="text-xs tracking-widest uppercase font-medium hover:text-gray-300 transition-colors">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden md:block md:col-span-1 lg:col-span-2"></div>
+
+                <!-- Navigation Columns -->
+                <div class="md:col-span-3">
+                    <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-6 font-medium">Navigate</h3>
+                    <ul class="space-y-3 text-sm font-light text-gray-300">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="designers.html" class="hover:text-white transition-colors">Designers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Models</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Creative</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Campaign</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Directory</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Showcase</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Membership</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Events</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3">
+                    <h3 class="text-xs tracking-widest uppercase text-gray-500 mb-6 font-medium">Connect</h3>
+                    <ul class="space-y-3 text-sm font-light text-gray-300 mb-8">
+                        <li class="flex items-center space-x-2">
+                            <i class="fab fa-instagram"></i>
+                            <a href="#" class="hover:text-white transition-colors">Social Impact Project Hollywood</a>
+                        </li>
+                    </ul>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed mb-4">
+                        Inquiries from Media, Designers, Talent, Brands, partnerships, sponsorships and production are welcomed through the contact page.
+                    </p>
+                    <a href="contact.html" class="text-sm font-medium hover:text-gray-300 transition-colors border-b border-gray-600 pb-1">Contact The Project</a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
+                <p>© 2026 Social Impact Project Hollywood</p>
+                <p class="mt-4 md:mt-0 tracking-widest uppercase">Breaking Barriers · Building Portfolios · Creating Access</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const body = document.body;
+            
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                body.style.overflow = 'hidden'; 
+            } else {
+                menu.classList.add('translate-x-full');
+                body.style.overflow = '';
+            }
+        }
+
+        // Header Background on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
+
+        // Category Filtering Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const modelCards = document.querySelectorAll('.model-card');
+
+            // Check URL hash on load for initial filter (e.g. models.html#runway)
+            const hash = window.location.hash.replace('#', '');
+            if(hash) {
+                const initialBtn = document.querySelector(`.filter-btn[data-filter="${hash}"]`);
+                if(initialBtn) applyFilter(initialBtn, hash);
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+                    applyFilter(btn, filter);
+                    // Update URL hash without jumping
+                    history.pushState(null, null, `#${filter}`);
+                });
+            });
+
+            function applyFilter(activeBtn, filter) {
+                // Update active button styling
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'text-black', 'border-black');
+                    b.classList.add('text-brand-dark-gray', 'border-transparent');
+                });
+                activeBtn.classList.add('active', 'text-black', 'border-black');
+                activeBtn.classList.remove('text-brand-dark-gray', 'border-transparent');
+
+                // Filter cards
+                modelCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        // small timeout to allow display:block to apply before changing opacity
+                        setTimeout(() => { card.style.opacity = '1'; }, 50);
+                    } else {
+                        if (card.getAttribute('data-category').includes(filter)) {
+                            card.style.display = 'block';
+                            setTimeout(() => { card.style.opacity = '1'; }, 50);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => { card.style.display = 'none'; }, 300); // Wait for transition
+                        }
+                    }
+                });
+            }
+
+            // --- Model Modal (Pop-out) Logic ---
+            const modal = document.getElementById('modelModal');
+            const modalContent = document.getElementById('modelModalContent');
+            const modalImage = document.getElementById('modalImage');
+            const modalName = document.getElementById('modalName');
+            const modalCategory = document.getElementById('modalCategory');
+            const modalHeight = document.getElementById('modalHeight');
+
+            // Attach click event to all model cards dynamically
+            modelCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Extract data from the clicked HTML card elements
+                    const img = card.querySelector('img').src;
+                    const name = card.querySelector('h3').innerText;
+                    const height = card.querySelector('span').innerText;
+                    const category = card.querySelector('p').innerText;
+
+                    // Populate the Modal UI
+                    modalImage.src = img;
+                    modalName.innerText = name;
+                    modalHeight.innerText = height;
+                    modalCategory.innerText = category;
+                    
+                    // Show Modal & Prevent Body Scroll (locks background)
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Global close function
+            window.closeModelModal = function() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            // Close modal on Escape key press for accessibility
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('opacity-0')) {
+                    closeModelModal();
+                }
+            });
+            // ----------------------------------------
+
+            // Dark Mode Toggle Logic
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
+            const htmlEl = document.documentElement;
+
+            function toggleTheme() {
+                htmlEl.classList.toggle('dark-mode-invert');
+                const isDark = htmlEl.classList.contains('dark-mode-invert');
+                
+                // Update Desktop Icon
+                const desktopIcon = darkModeToggle.querySelector('i');
+                if (isDark) {
+                    desktopIcon.classList.remove('fa-moon');
+                    desktopIcon.classList.add('fa-sun');
+                } else {
+                    desktopIcon.classList.remove('fa-sun');
+                    desktopIcon.classList.add('fa-moon');
+                }
+
+                // Update Mobile Icon/Text
+                const mobileIcon = mobileDarkModeToggle.querySelector('i');
+                if (isDark) {
+                    mobileIcon.classList.remove('fa-moon');
+                    mobileIcon.classList.add('fa-sun');
+                    mobileDarkModeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+                } else {
+                    mobileIcon.classList.remove('fa-sun');
+                    mobileIcon.classList.add('fa-moon');
+                    mobileDarkModeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+                }
+            }
+
+            if(darkModeToggle) darkModeToggle.addEventListener('click', toggleTheme);
+            if(mobileDarkModeToggle) mobileDarkModeToggle.addEventListener('click', toggleTheme);
+        });
+    </script>
+
+</body>
+</html>
