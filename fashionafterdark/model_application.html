@@ -137,41 +137,39 @@
                 </div>
 
                 <!-- Right Column: Form -->
+    
+    
                 <div class="lg:col-span-8 order-1 lg:order-2">
-                    <form action="#" method="POST" class="space-y-12" onsubmit="event.preventDefault(); alert('Application submitted successfully! (This is a demonstration)');">
-                        
+
+<form action="https://forminit.com/thank-you
+" method="POST" class="space-y-12" enctype="multipart/form-data">    
+    
+
                         <!-- Personal Details -->
                         <div>
                             <h2 class="text-2xl serif-heading mb-6">Personal Details</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label class="sr-only">First Name</label>
-                                    <input type="text" placeholder="First Name *" class="form-input" required>
-                                </div>
+<input type="text" name="first_name" placeholder="First Name *" class="form-input" required>                                </div>
                                 <div>
                                     <label class="sr-only">Last Name</label>
-                                    <input type="text" placeholder="Last Name *" class="form-input" required>
-                                </div>
+<input type="text" name="last_name" placeholder="Last Name *" class="form-input" required>                                </div>
                                 <div class="md:col-span-2">
                                     <label class="sr-only">Email Address</label>
-                                    <input type="email" placeholder="Email Address *" class="form-input" required>
-                                </div>
+<input type="email" name="email" placeholder="Email Address *" class="form-input" required>                                </div>
                                 <div>
                                     <label class="sr-only">Phone Number</label>
-                                    <input type="tel" placeholder="Phone Number *" class="form-input" required>
-                                </div>
+<input type="tel" name="phone" placeholder="Phone Number *" class="form-input" required>                                </div>
                                 <div>
                                     <label class="sr-only">Date of Birth</label>
-                                    <input type="text" placeholder="Date of Birth (MM/DD/YYYY) *" class="form-input" required>
-                                </div>
+<input type="text" name="dob" placeholder="Date of Birth (MM/DD/YYYY) *" class="form-input" required>                                </div>
                                 <div>
                                     <label class="sr-only">City, State</label>
-                                    <input type="text" placeholder="Current City & State *" class="form-input" required>
-                                </div>
+<input type="text" name="location" placeholder="Current City & State *" class="form-input" required>                                </div>
                                 <div>
                                     <label class="sr-only">Instagram Handle</label>
-                                    <input type="text" placeholder="Instagram Handle (@...)" class="form-input">
-                                </div>
+<input type="text" name="instagram" placeholder="Instagram Handle (@...)" class="form-input">                                </div>
                             </div>
                         </div>
 
@@ -181,34 +179,21 @@
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                                 <div>
                                     <label class="text-xs text-gray-500 mb-1 block">Height</label>
-                                    <select class="form-input text-gray-700 bg-transparent" required>
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="5-7">5'7"</option>
-                                        <option value="5-8">5'8"</option>
-                                        <option value="5-9">5'9"</option>
-                                        <option value="5-10">5'10"</option>
-                                        <option value="5-11">5'11"</option>
-                                        <option value="6-0">6'0"</option>
-                                        <option value="6-1">6'1"</option>
-                                        <option value="6-2">6'2"+</option>
-                                    </select>
+<select name="height" class="form-input text-gray-700 bg-transparent" required>                                        <option value="" disabled selected>Select</option>
+                      
                                 </div>
                                 <div>
                                     <label class="text-xs text-gray-500 mb-1 block">Bust / Chest</label>
-                                    <input type="text" placeholder="Inches" class="form-input" required>
-                                </div>
+<input type="text" name="hips" placeholder="Inches" class="form-input" required>                                </div>
                                 <div>
                                     <label class="text-xs text-gray-500 mb-1 block">Waist</label>
-                                    <input type="text" placeholder="Inches" class="form-input" required>
-                                </div>
+<input type="text" name="shoe_size" placeholder="Size" class="form-input" required>                                </div>
                                 <div>
                                     <label class="text-xs text-gray-500 mb-1 block">Hips</label>
-                                    <input type="text" placeholder="Inches" class="form-input" required>
-                                </div>
+<input type="text" name="dress_size" placeholder="Size" class="form-input">                                </div>
                                 <div>
                                     <label class="text-xs text-gray-500 mb-1 block">Shoe Size (US)</label>
-                                    <input type="text" placeholder="Size" class="form-input" required>
-                                </div>
+<input type="text" name="hair_color" placeholder="Color" class="form-input" required>                                </div>
                                 <div>
                                     <label class="text-xs text-gray-500 mb-1 block">Dress Size</label>
                                     <input type="text" placeholder="Size" class="form-input">
@@ -219,8 +204,7 @@
                                 </div>
                                 <div>
                                     <label class="text-xs text-gray-500 mb-1 block">Eye Color</label>
-                                    <input type="text" placeholder="Color" class="form-input" required>
-                                </div>
+<input type="text" name="eye_color" placeholder="Color" class="form-input" required>                                </div>
                             </div>
                         </div>
 
@@ -232,24 +216,21 @@
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <!-- Headshot -->
                                 <div class="file-upload-zone p-6 flex flex-col items-center justify-center text-center cursor-pointer h-48 relative">
-                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>
-                                    <i class="fas fa-camera text-2xl text-gray-400 mb-3"></i>
+<input type="file" name="headshot_photo" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>                                    <i class="fas fa-camera text-2xl text-gray-400 mb-3"></i>
                                     <span class="text-sm font-medium text-gray-700">Headshot</span>
                                     <span class="text-xs text-gray-500 mt-1">Straight on, no smiling</span>
                                 </div>
                                 
                                 <!-- Profile -->
                                 <div class="file-upload-zone p-6 flex flex-col items-center justify-center text-center cursor-pointer h-48 relative">
-                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>
-                                    <i class="fas fa-user text-2xl text-gray-400 mb-3"></i>
+<input type="file" name="profile_photo" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>                                    <i class="fas fa-user text-2xl text-gray-400 mb-3"></i>
                                     <span class="text-sm font-medium text-gray-700">Profile</span>
                                     <span class="text-xs text-gray-500 mt-1">Side profile</span>
                                 </div>
 
                                 <!-- Full Body -->
                                 <div class="file-upload-zone p-6 flex flex-col items-center justify-center text-center cursor-pointer h-48 relative">
-                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>
-                                    <i class="fas fa-child text-2xl text-gray-400 mb-3"></i>
+<input type="file" name="full_body_photo" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/png, image/jpeg" required>                                    <i class="fas fa-child text-2xl text-gray-400 mb-3"></i>
                                     <span class="text-sm font-medium text-gray-700">Full Body</span>
                                     <span class="text-xs text-gray-500 mt-1">Head to toe</span>
                                 </div>
