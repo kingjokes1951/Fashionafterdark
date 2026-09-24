@@ -3,19 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion After Dark | Model Application</title>
+    <title>Fashion After Dark | Models & Talent</title>
     
-   
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for general text, Playfair Display for headings for an elegant feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Configuration for Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'brand-black': '#111111',
+                        'brand-gray': '#f5f5f5',
+                        'brand-light-gray': '#fafafa',
+                        'brand-dark-gray': '#333333',
+                        'brand-border': '#e5e5e5'
+                    },
+                    maxWidth: {
+                        'screen-xl': '1280px',
+                    }
+                }
+            }
+        }
+
+    </script>
+
+    <!-- Custom CSS for specific tweaks -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, .serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Subtle reveal animation on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered transition delays for grid items */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Custom link underline effect */
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-black, #111);
+            color: white;
+            border: 1px solid var(--brand-black, #111);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-black, #111);
+            border: 1px solid var(--brand-border, #e5e5e5);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--brand-black, #111);
+        }
+        
+        .number-indicator {
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-family: monospace;
+        }
+
+        /* Category Filter Styles */
+        .filter-btn.active {
+            color: black;
+            border-bottom-color: black;
+        }
+        
+        .model-card {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Dark Mode Invert Styles */
+        html.dark-mode-invert {
+            filter: invert(1) hue-rotate(180deg);
+            background-color: #111;
+        }
+        
+        /* Double-invert images and videos so they look normal */
+        html.dark-mode-invert img,
+        html.dark-mode-invert video {
+            filter: invert(1) hue-rotate(180deg);
+        }
+    </style>
 </head>
 <body class="bg-white">
 
     <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-brand-border transition-all duration-300" id="mainHeader">
         <div class="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
             <a href="Fashionafterdark.html" class="text-xl tracking-wide font-bold serif-heading">
                 FASHION AFTER DARK
             </a>
-          
-              <!-- Desktop Navigation -->
+
+        <!-- Desktop Navigation -->
 
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide h-full">
 
@@ -45,7 +202,7 @@
                     <div class="absolute top-[calc(100%-1.25rem)] left-0 w-48 bg-white border border-brand-border shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                         <a href="models.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors">All Models</a>
 
-                        <a href="models1.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors border-t border-brand-border">New Faces</a>
+                        <a href="#models" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors border-t border-brand-border">New Faces</a>
 
 
                         <a href="model_application.html" class="btn bg-white text-black hover:bg-gray-200 border border-white transition-colors">Apply as a Model</a>
@@ -56,16 +213,7 @@
 
             </nav>
 
-            <!-- Actions -->
-
-            <div class="hidden md:flex items-center space-x-4">
-
-                <a href="#" class="text-sm font-medium hover-underline-animation">Login</a>
-
-                <a href="#" class="btn btn-primary py-2 px-4 text-xs">Donate</a>
-
-
-            </div>
+     
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 flex flex-col pt-24 px-6 md:hidden">
             <button class="absolute top-6 right-6 text-2xl text-black" aria-label="Close menu" onclick="toggleMobileMenu()">

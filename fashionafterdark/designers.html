@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion After Dark | Designers & Portfolios</title>
+    <title>Fashion After Dark | Models & Talent</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Inter for general text, Playfair Display for headings for an elegant feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -38,8 +38,10 @@
                 }
             }
         }
+
     </script>
 
+    <!-- Custom CSS for specific tweaks -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -53,6 +55,7 @@
             font-family: 'Playfair Display', serif;
         }
 
+        /* Subtle reveal animation on scroll */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -64,6 +67,13 @@
             transform: translateY(0);
         }
 
+        /* Staggered transition delays for grid items */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Custom link underline effect */
         .hover-underline-animation {
             display: inline-block;
             position: relative;
@@ -87,6 +97,7 @@
             transform-origin: bottom left;
         }
 
+        /* Button styling */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -97,12 +108,6 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            min-height: 48px;
-            border-radius: 4px;
-        }
-
-        .btn:active {
-            transform: scale(0.98);
         }
 
         .btn-primary {
@@ -134,11 +139,23 @@
             font-family: monospace;
         }
 
+        /* Category Filter Styles */
+        .filter-btn.active {
+            color: black;
+            border-bottom-color: black;
+        }
+        
+        .model-card {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Dark Mode Invert Styles */
         html.dark-mode-invert {
             filter: invert(1) hue-rotate(180deg);
             background-color: #111;
         }
         
+        /* Double-invert images and videos so they look normal */
         html.dark-mode-invert img,
         html.dark-mode-invert video {
             filter: invert(1) hue-rotate(180deg);
@@ -147,18 +164,19 @@
 </head>
 <body class="bg-white">
 
-    <!-- Unified Header -->
     <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-brand-border transition-all duration-300" id="mainHeader">
         <div class="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-xl tracking-wide font-bold serif-heading">FASHION AFTER DARK</a>
-  
-  
-  
-            <!-- Desktop Navigation -->
+            
+            <!-- Logo -->
+            <a href="Fashionafterdark.html" class="text-xl tracking-wide font-bold serif-heading">
+                FASHION AFTER DARK
+            </a>
+
+        <!-- Desktop Navigation -->
 
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide h-full">
 
-                <a href="index.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Home</a>
+                <a href="Fashionafterdark.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Home</a>
 
                                 <a href="models.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Models</a>
 
@@ -184,7 +202,7 @@
                     <div class="absolute top-[calc(100%-1.25rem)] left-0 w-48 bg-white border border-brand-border shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                         <a href="models.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors">All Models</a>
 
-                        <a href="models1.html" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors border-t border-brand-border">New Faces</a>
+                        <a href="#models" class="block px-4 py-3 text-sm text-gray-600 hover:text-black hover:bg-brand-gray transition-colors border-t border-brand-border">New Faces</a>
 
 
                         <a href="model_application.html" class="btn bg-white text-black hover:bg-gray-200 border border-white transition-colors">Apply as a Model</a>
@@ -195,6 +213,7 @@
 
             </nav>
 
+     
     
             <!-- Actions -->
 

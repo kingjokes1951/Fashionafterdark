@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion After Dark | Events & Activations</title>
+    <title>Fashion After Dark | Models & Talent</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,6 +38,7 @@
                 }
             }
         }
+
     </script>
 
     <!-- Custom CSS for specific tweaks -->
@@ -65,6 +66,12 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Staggered transition delays for grid items */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
 
         /* Custom link underline effect */
         .hover-underline-animation {
@@ -124,42 +131,22 @@
             border-color: var(--brand-black, #111);
         }
         
-        /* Calendar Specific Styles */
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 4px;
-            text-align: center;
-        }
-        
-        .calendar-day {
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-            border-radius: 9999px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .calendar-day:hover:not(.empty) {
-            background-color: #f5f5f5;
-        }
-        
-        .calendar-day.has-event {
-            font-weight: 600;
-            color: white;
-            background-color: var(--brand-black);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        
-        .calendar-day.has-event:hover {
-            transform: scale(1.1);
+        .number-indicator {
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-family: monospace;
         }
 
-        .calendar-day.empty {
-            cursor: default;
+        /* Category Filter Styles */
+        .filter-btn.active {
+            color: black;
+            border-bottom-color: black;
+        }
+        
+        .model-card {
+            transition: opacity 0.3s ease;
         }
 
         /* Dark Mode Invert Styles */
@@ -168,30 +155,28 @@
             background-color: #111;
         }
         
-        /* Double-invert images, videos, and map containers so they look normal */
+        /* Double-invert images and videos so they look normal */
         html.dark-mode-invert img,
-        html.dark-mode-invert video,
-        html.dark-mode-invert .map-container {
+        html.dark-mode-invert video {
             filter: invert(1) hue-rotate(180deg);
         }
     </style>
 </head>
 <body class="bg-white">
 
-    <!-- Unified Header -->
     <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-brand-border transition-all duration-300" id="mainHeader">
         <div class="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
             
             <!-- Logo -->
-            <a href="index.html" class="text-xl tracking-wide font-bold serif-heading">
+            <a href="Fashionafterdark.html" class="text-xl tracking-wide font-bold serif-heading">
                 FASHION AFTER DARK
             </a>
 
-    <!-- Desktop Navigation -->
+        <!-- Desktop Navigation -->
 
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide h-full">
 
-                <a href="index.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Home</a>
+                <a href="Fashionafterdark.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Home</a>
 
                                 <a href="models.html" class="text-brand-dark-gray hover:text-black hover-underline-animation">Models</a>
 
@@ -228,6 +213,7 @@
 
             </nav>
 
+     
             <!-- Actions -->
 
             <div class="hidden md:flex items-center space-x-4">
