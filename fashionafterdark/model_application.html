@@ -525,7 +525,38 @@
 
 
 
-
+<script>
+    // Show thumbnail previews for file uploads
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+                const container = this.parentElement;
+                
+                // Create a visual preview of the image
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    container.style.backgroundImage = `url('${event.target.result}')`;
+                    container.style.backgroundSize = 'cover';
+                    container.style.backgroundPosition = 'center';
+                    
+                    // Update text to show success and make it readable over the image
+                    const titleText = container.querySelector('span.text-sm');
+                    titleText.textContent = "Attached ✓";
+                    titleText.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    titleText.style.padding = '4px 8px';
+                    titleText.style.borderRadius = '4px';
+                    titleText.style.color = '#000';
+                    
+                    // Hide the icon and subtext to clean up the box
+                    container.querySelector('i').style.display = 'none';
+                    container.querySelector('span.text-xs').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
 
 
 
