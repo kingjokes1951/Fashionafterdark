@@ -1,2 +1,21 @@
+<script>
+  const forminit = new Forminit();
+  const FORM_ID = "gwj7290nl8v";
 
-{"success":false,"error":"UNKNOWN_ERROR","code":500,"message":"The POST method is not supported for route thank-you. Supported methods: GET, HEAD."}
+  document.getElementById("contact-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const { data, error } = await forminit.submit(FORM_ID, formData);
+
+    const status = document.getElementById("form-status");
+
+    if (error) {
+      status.textContent = error.message;
+      return;
+    }
+
+    status.textContent = "Message sent successfully!";
+    e.target.reset();
+  });
+</script>
