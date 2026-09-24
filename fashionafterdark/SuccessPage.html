@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Received | Fashion After Dark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, .serif-heading { font-family: 'Playfair Display', serif; }
+        .btn-primary { background-color: #111; color: white; padding: 0.75rem 1.5rem; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em; transition: all 0.3s ease; }
+        .btn-primary:hover { background-color: transparent; color: #111; border: 1px solid #111; }
+    </style>
+</head>
+<body class="bg-white flex flex-col min-h-screen">
+    
+    <main class="flex-grow flex items-center justify-center px-6 py-24">
+        <div class="max-w-xl mx-auto text-center">
+            <span class="text-xs tracking-widest uppercase text-gray-500 mb-4 block font-medium">Status: Received</span>
+            <h1 class="text-4xl md:text-5xl leading-tight mb-6 serif-heading">Thank You.</h1>
+            <p class="text-gray-600 font-light mb-10 leading-relaxed">
+                Your portfolio has been successfully submitted to our scouting team. A confirmation email has been sent to your inbox.
+            </p>
+            
+            <!-- Newsletter Block -->
+            <div class="bg-[#fafafa] p-8 border border-[#e5e5e5]">
+                <h2 class="text-2xl serif-heading mb-3">Join The Guest List</h2>
+                <p class="text-sm text-gray-500 mb-6 font-light">While you wait for our scouting team to review your profile, subscribe to our newsletter for exclusive event updates and future casting calls.</p>
+                
+                <form action="YOUR_NEWSLETTER_ENDPOINT" method="POST" class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="Email Address" class="flex-grow bg-transparent border-b border-gray-300 px-2 py-3 text-sm focus:outline-none focus:border-black" required>
+                    <button type="submit" class="btn-primary whitespace-nowrap">Subscribe</button>
+                </form>
+            </div>
+            
+            <div class="mt-12">
+                <a href="Fashionafterdark.html" class="text-sm border-b border-black pb-1 hover:text-gray-500 transition-colors">Return to Homepage</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
