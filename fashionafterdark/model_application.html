@@ -141,8 +141,7 @@
     
                 <div class="lg:col-span-8 order-1 lg:order-2">
 
-<form action="https://forminit.com/thank-you
-" method="POST" class="space-y-12" enctype="multipart/form-data">    
+<form action="https://forminit.com/f/gwj7290nl8v" method="POST" class="space-y-12" enctype="multipart/form-data">
     
 
                         <!-- Personal Details -->
@@ -235,25 +234,24 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Division Interest -->
-                        <div>
-                            <h2 class="text-2xl serif-heading mb-4">Area of Interest</h2>
-                            <div class="flex flex-wrap gap-4 text-sm">
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
-                                    <span>Runway</span>
-                                </label>
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
-                                    <span>Editorial / Print</span>
-                                </label>
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
-                                    <span>Commercial</span>
-                                </label>
-                            </div>
-                        </div>
+<!-- Division Interest -->
+<div>
+    <h2 class="text-2xl serif-heading mb-4">Area of Interest</h2>
+    <div class="flex flex-wrap gap-4 text-sm">
+        <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="interest[]" value="Runway" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
+            <span>Runway</span>
+        </label>
+        <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="interest[]" value="Editorial/Print" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
+            <span>Editorial / Print</span>
+        </label>
+        <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" name="interest[]" value="Commercial" class="w-4 h-4 border-gray-300 rounded text-black focus:ring-black">
+            <span>Commercial</span>
+        </label>
+    </div>
+</div>
 
                         <div class="pt-6 border-t border-brand-border flex items-center justify-between flex-wrap gap-4">
                             <p class="text-xs text-gray-500 max-w-md">By submitting this application, you agree to our terms of service and acknowledge that all provided information is accurate.</p>
